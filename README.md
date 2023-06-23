@@ -65,7 +65,7 @@ To evaluate, for instance, on the 11k right dorsal test set, run:
 `python  test.py --attributes_file ./11k/sub_dataset/dorsal_dr.csv --checkpoint ./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth`
 
 Please look into the `test.py` for more details. Note that `./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth` is the path to the learned model
-that you can get after training the model. You need to change `./2023-06-21_14-21/checkpoint-000030-best.pth` to the correct name.
+that you can get after training the model. You need to change `./2023-06-21_14-21/checkpoint-000030-best.pth` to the correct name that is produced after training.
 
 
 ## Citation
