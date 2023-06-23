@@ -48,7 +48,7 @@ def set_seed(seed):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Training pipeline for IGAE-Net models.')
-    parser.add_argument('--attributes_file', type=str, default='./11k/sub_dataset/palmar_pl.csv',
+    parser.add_argument('--attributes_file', type=str, default='./11k/sub_dataset/dorsal_dr.csv',
                         help="Path to the csv file with attributes")
     parser.add_argument('--optimizer', default='adam', type=str, help='Optimizer to use: sgd or adam')
     parser.add_argument('--lr', default=0.0008, type=float,

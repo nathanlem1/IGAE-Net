@@ -231,10 +231,10 @@ def calculate_metrics(output, target):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Inference pipeline')
-    parser.add_argument('--checkpoint', type=str, default='./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth',
-                        help="Path to the checkpoint")
     parser.add_argument('--attributes_file', type=str, default='./11k/sub_dataset/dorsal_dr.csv',
                         help="Path to the file with attributes")
+    parser.add_argument('--checkpoint', type=str, default='./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth',
+                        help="Path to the checkpoint")
 
     args = parser.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
