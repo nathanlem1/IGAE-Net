@@ -1,4 +1,4 @@
-### Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation
+# Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning
 
 Code for the paper [Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning](https://arxiv.org/abs/2303.15263).
 
@@ -73,7 +73,7 @@ that you can get after training the model. You need to change `./2023-06-21_14-2
 If you use this code for your research, please cite our paper.
 
 ```
-@misc{baisa2023joint,
+@misc{Nathanael_2023,
       title={Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning}, 
       author={Nathanael L. Baisa},
       year={2023},

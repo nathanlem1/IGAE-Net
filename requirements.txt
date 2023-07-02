@@ -1,5 +1,5 @@
-numpy
 matplotlib
+numpy
 Pillow
 scikit-learn
 scipy>=1.0.0
