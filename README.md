@@ -52,7 +52,7 @@ Optionally, you can also analyze the [11k](https://sites.google.com/view/11khand
 
 
 ## Train
-To train on the 11k right dorsal training set, run:  
+To train on the 11k right dorsal training set, you need to run the following:  
 
 `python train.py  --attributes_file ./11k/sub_dataset/dorsal_dr.csv`
 
@@ -60,7 +60,7 @@ Please look into the `train.py` for more details. You need to provide the correc
 
 
 ## Evaluate
-To evaluate, for instance, on the 11k right dorsal test set, run:
+To evaluate, for instance, on the 11k right dorsal test set, you need to run the following:
 
 `python  test.py --attributes_file ./11k/sub_dataset/dorsal_dr.csv --checkpoint ./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth`
 
