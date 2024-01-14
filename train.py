@@ -54,13 +54,12 @@ if __name__ == '__main__':
     parser.add_argument('--lr', default=0.0008, type=float,
                         help='learning rate for new parameters, try 0.015, 0.02, 0.05, 0.001 (adam default)'
                              'For pretrained parameters, it is 10 times smaller than this')
-    parser.add_argument('--warmup', action='store_true', help='Use warmup learning strategy.')
+    parser.add_argument('--warmup', default=True, action='store_true', help='Use warmup learning strategy.')
     parser.add_argument('--batch_size', default=20, type=int, help='Batch size')  # 10, 20, 32, etc
     parser.add_argument('--N_epochs', default=50, type=int, help='Number of epochs for training.') # 50, 60,
     parser.add_argument('--num_workers', default=8, type=int, help='Number of processes to handle dataset loading')
 
     args = parser.parse_args()
-    args.warmup = True  # Use warmup learning strategy
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # For reproducibility
