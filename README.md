@@ -1,6 +1,6 @@
 # Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning
 
-Code for the paper [Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning](https://arxiv.org/abs/2303.15263).
+Code for the paper [Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning](https://ieeexplore.ieee.org/abstract/document/10593838) which has been published on [IWBF 2024](https://www.utwente.nl/en/eemcs/iwbf2024/).
 
 
 ## Overview
