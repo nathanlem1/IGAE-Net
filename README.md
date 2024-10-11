@@ -26,7 +26,7 @@ Some qualitative results of our proposed method on right dorsal of [11k](https:/
 
 
 ## Data Preparation
-We use [11k](https://sites.google.com/view/11khands) dataset for our experiment. To use the [11k](https://sites.google.com/view/11khands) dataset, you neet to create `11k` folder under the `IGAE-Net` folder. Download dataset to `/IGAE-Net/11k/` from https://sites.google.com/view/11khands and extract it. You need to download both hand images and metadata (.csv file). The data structure will look like:
+We use [11k](https://sites.google.com/view/11khands) dataset for our experiment. To use the [11k](https://sites.google.com/view/11khands) dataset, you neet to create `11k` folder under the `IGAE-Net` folder. Download dataset to `/IGAE-Net/11k/` from [11k](https://sites.google.com/view/11khands) and extract it. You need to download both hand images and metadata (.csv file). The data structure will look like:
 
 ```
 11k/
@@ -73,12 +73,14 @@ that you can get after training the model. You need to change `./2023-06-21_14-2
 If you use this code for your research, please cite our paper.
 
 ```
-@misc{Nathanael_2023,
-      title={Joint Person Identity, Gender and Age Estimation from Hand Images using Deep Multi-Task Representation Learning}, 
-      author={Nathanael L. Baisa},
-      year={2023},
-      eprint={2303.15263},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
+@INPROCEEDINGS{10593838,
+  author={Baisa, Nathanael L.},
+  booktitle={2024 12th International Workshop on Biometrics and Forensics (IWBF)}, 
+  title={Joint Person Identity, Gender and Age Estimation from Hand Images Using Deep Multi-Task Representation Learning}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={01-06},
+  doi={10.1109/IWBF62628.2024.10593838}
+  }
 ```
