@@ -21,9 +21,13 @@ Some qualitative results of our proposed method on right dorsal of [11k](https:/
 
 ## Installation
 
-1. Git clone this repo: `git clone https://github.com/nathanlem1/IGAE-Net.git`
-2. Install dependencies by `pip install -r requirements.txt` to have the same environment configuration as the one we used. Note that we trained all models on a single NVIDIA GeForce RTX 2080 Ti GPU.
+Git clone this repo and install dependencies to have the same environment configuration as the one we used. Note that we trained all models on a single NVIDIA GeForce RTX 2080 Ti GPU.
 
+```
+git clone https://github.com/nathanlem1/IGAE-Net.git
+cd IGAE-Net
+pip install -r requirements.txt
+```
 
 ## Data Preparation
 We use [11k](https://sites.google.com/view/11khands) dataset for our experiment. To use the [11k](https://sites.google.com/view/11khands) dataset, you neet to create `11k` folder under the `IGAE-Net` folder. Download dataset to `/IGAE-Net/11k/` from [11k](https://sites.google.com/view/11khands) and extract it. You need to download both hand images and metadata (.csv file). The data structure will look like:
@@ -35,7 +39,9 @@ We use [11k](https://sites.google.com/view/11khands) dataset for our experiment.
 ```
 Then you can run following code to prepare (split) the 11k dataset: 
 
-`python dataset_11k_split.py`
+```
+python dataset_11k_split.py
+```
 
 After running `python dataset_11k_split.py`, the 11k folder data structure will look like:
 
@@ -54,7 +60,9 @@ Optionally, you can also analyze the [11k](https://sites.google.com/view/11khand
 ## Train
 To train on the 11k right dorsal training set, you need to run the following code on terminal:  
 
-`python train.py  --attributes_file ./11k/sub_dataset/dorsal_dr.csv`
+```
+python train.py  --attributes_file ./11k/sub_dataset/dorsal_dr.csv
+```
 
 Please look into the `train.py` for more details. You need to provide the correct dataset i.e. right dorsal of 11k, left dorsal of 11k, right palmar of 11k, or left palmar of 11k.
 
@@ -62,7 +70,9 @@ Please look into the `train.py` for more details. You need to provide the correc
 ## Evaluate
 To evaluate, for instance, on the 11k right dorsal test set, you need to run the following code on terminal:
 
-`python  test.py --attributes_file ./11k/sub_dataset/dorsal_dr.csv --checkpoint ./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth`
+```
+python  test.py --attributes_file ./11k/sub_dataset/dorsal_dr.csv --checkpoint ./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth
+```
 
 Please look into the `test.py` for more details. Note that `./checkpoints/2023-06-21_14-21/checkpoint-000030-best.pth` is the path to the learned model
 that you can get after training the model. You need to change `./2023-06-21_14-21/checkpoint-000030-best.pth` to the correct name that is produced after training.
