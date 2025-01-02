@@ -138,7 +138,7 @@ def visualize_grid(model, dataloader, attributes, device, show_cn_matrices=True,
     result = os.path.join('/'.join(checkpoint.split('/')[:-1]), checkpoint.split('/')[-1][:-4] + '_accuracy.txt')
     res = open(result, 'w')
     res.write('identity:%.4f gender:%.4f age:%.4f' % (accuracy_identity / n_samples, accuracy_gender / n_samples,
-                                                          accuracy_age / n_samples))
+                                                      accuracy_age / n_samples))
 
     # Show classification report
     with warnings.catch_warnings():  # sklearn may produce a warning when processing zero row in classification report

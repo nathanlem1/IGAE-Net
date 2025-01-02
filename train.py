@@ -56,7 +56,7 @@ if __name__ == '__main__':
                              'For pretrained parameters, it is 10 times smaller than this')
     parser.add_argument('--warmup', default=True, action='store_true', help='Use warmup learning strategy.')
     parser.add_argument('--batch_size', default=20, type=int, help='Batch size')  # 10, 20, 32, etc
-    parser.add_argument('--N_epochs', default=50, type=int, help='Number of epochs for training.') # 50, 60,
+    parser.add_argument('--N_epochs', default=50, type=int, help='Number of epochs for training.')  # 50, 60,
     parser.add_argument('--num_workers', default=8, type=int, help='Number of processes to handle dataset loading')
 
     args = parser.parse_args()
