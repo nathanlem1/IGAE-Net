@@ -229,7 +229,7 @@ def calculate_metrics(output, target):
     return accuracy_identity, accuracy_gender, accuracy_age
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='Inference pipeline')
     parser.add_argument('--attributes_file', type=str, default='./11k/sub_dataset/dorsal_dr.csv',
                         help="Path to the file with attributes")
@@ -265,3 +265,8 @@ if __name__ == '__main__':
     visualize_grid(model, test_dataloader, attributes, device, checkpoint=args.checkpoint)
 
     print('Testing is finished!')
+
+
+# Execute from the interpreter
+if __name__ == "__main__":
+    main()

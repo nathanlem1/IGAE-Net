@@ -9,7 +9,7 @@ import random
 import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
-from torch.optim import lr_scheduler
+from torch.optim import lr_scheduler as lrscheduler
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
@@ -38,7 +38,7 @@ def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     cudnn.deterministic = True
-    cudnn.benchmark = False   # If True, causes cuDNN to benchmark multiple convolution algorithms and select the
+    cudnn.benchmark = False   # If True, it causes cuDNN to benchmark multiple convolution algorithms and select the
     # fastest. For PyTorch reproducibility, you need to set to False at cost of slightly lower run-time performance
     # but easy for experimentation.
     np.random.seed(seed)      # For Numpy reproducibility; this is only used in case any library depends on numpy!
@@ -46,7 +46,7 @@ def set_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='Training pipeline for IGAE-Net models.')
     parser.add_argument('--attributes_file', type=str, default='./11k/sub_dataset/dorsal_dr.csv',
                         help="Path to the csv file with attributes")
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     parser.add_argument('--warmup', default=True, action='store_true', help='Use warmup learning strategy.')
     parser.add_argument('--batch_size', default=20, type=int, help='Batch size')  # 10, 20, 32, etc
     parser.add_argument('--N_epochs', default=50, type=int, help='Number of epochs for training.')  # 50, 60,
-    parser.add_argument('--num_workers', default=8, type=int, help='Number of processes to handle dataset loading')
+    parser.add_argument('--num_workers', default=0, type=int, help='Number of processes to handle dataset loading')
 
     args = parser.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -133,7 +133,7 @@ if __name__ == '__main__':
             weight_decay=5e-4
         )
     else:
-        raise NameError
+        raise ValueError('Set the optimizer to either sgd or adam')
 
     logdir = os.path.join('./logs/', get_cur_time())
     savedir = os.path.join('./checkpoints/', get_cur_time())
@@ -159,14 +159,14 @@ if __name__ == '__main__':
     best_model_wts = copy.deepcopy(model.state_dict())
 
     if args.warmup:
-        # Learning rate scheduler
-        lr_scheduler_warmup = LRScheduler(base_lr=0.0008, step=[25, 40],  # Standard (ours)
+        # Learning rate scheduler. Make sure warmup_begin_lr is smaller than base_lr.
+        lr_scheduler_warmup = LRScheduler(base_lr=args.lr, step=[25, 40],
                                           factor=0.5, warmup_epoch=10,
                                           warmup_begin_lr=0.000008)
     else:
         # Decay LR by a factor of 0.1 every some (e.g. 30) epochs
         # lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
-        lr_scheduler = lr_scheduler.MultiStepLR(optimizer, milestones=[20, 40], gamma=0.1)
+        lr_scheduler = lrscheduler.MultiStepLR(optimizer, milestones=[20, 40], gamma=0.1)
 
     for epoch in range(1, args.N_epochs + 1):
         total_loss = 0
@@ -241,3 +241,8 @@ if __name__ == '__main__':
     logger.close()
 
     print('Training is finished!')
+
+
+# Execute from the interpreter
+if __name__ == "__main__":
+    main()
