@@ -8,13 +8,13 @@ In this paper, we propose a multi-task representation learning framework to join
 
 The proposed architecture of the identity, gender and age estimation network (IGAE-Net) is shown below.
 
-![](./doc_images/IGAE-Net-iga.png)
+![](./assets/IGAE-Net-iga.png)
 
 
 
 The qualitative results of our proposed method are also shown below. 
 
-![](./doc_images/sample_result_GT_PR.png)
+![](./assets/sample_result_GT_PR.png)
 
 Some qualitative results of our proposed method on right dorsal of [11k](https://sites.google.com/view/11khands) hands dataset using [Swin-T](https://arxiv.org/abs/2103.14030)-based IGAE-Net. The ground truth labels (GT) vs the predicted labels (PR) of identity, gender and age group of each hand image, respectively, are shown.
 
