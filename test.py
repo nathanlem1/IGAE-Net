@@ -10,7 +10,7 @@ import torch.nn as nn
 import torchvision.transforms as transforms
 from dataset_11k import HandsDataset, AttributesDataset, mean, std
 from model.models import IGAE_ResNet50, IGAE_DenseNet121, IGAE_ConvNext_t, IGAE_vit_b_16, IGAE_swin_t, IGAE_maxvit_t
-from get_loss import get_loss
+from utils.get_loss import get_loss
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, balanced_accuracy_score, classification_report
 from torch.utils.data import DataLoader
 

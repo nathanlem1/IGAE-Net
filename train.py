@@ -15,8 +15,8 @@ from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
 from dataset_11k import HandsDataset, AttributesDataset, mean, std
-from get_loss import get_loss
-from lr_scheduler import LRScheduler
+from utils.get_loss import get_loss
+from utils.lr_scheduler import LRScheduler
 from model.models import IGAE_ResNet50, IGAE_DenseNet121, IGAE_ConvNext_t, IGAE_vit_b_16, IGAE_swin_t, IGAE_maxvit_t
 from test import calculate_metrics, validate, visualize_grid
 
