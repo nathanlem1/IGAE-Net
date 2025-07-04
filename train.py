@@ -33,17 +33,37 @@ def checkpoint_save(model, name, epoch, best=False):
     print('Saved checkpoint:', f)
 
 
-# For reproducibility
-def set_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    cudnn.deterministic = True
-    cudnn.benchmark = False   # If True, it causes cuDNN to benchmark multiple convolution algorithms and select the
-    # fastest. For PyTorch reproducibility, you need to set to False at cost of slightly lower run-time performance
-    # but easy for experimentation.
-    np.random.seed(seed)      # For Numpy reproducibility; this is only used in case any library depends on numpy!
+def set_seed(seed: int = 42):
+    """
+    Set the random seed for reproducibility across Python, NumPy, and PyTorch.
+
+    Parameters:
+        seed (int): The seed value to use. You can set the seed to any fixed value.
+    Read more on:
+        https://docs.pytorch.org/docs/stable/notes/randomness.html
+        https://medium.com/@heyamit10/pytorch-reproducibility-a-practical-guide-d6f573cba679
+    """
+    # Set the seed for Python's built-in random module
     random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
+    # Set the seed for NumPy
+    np.random.seed(seed)
+    # Set the seed for PyTorch
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    # Ensure deterministic behavior in cuDNN (may impact performance)
+    torch.backends.cudnn.deterministic = True  # Disable CuDNN's non-deterministic optimizations.
+    torch.backends.cudnn.benchmark = False  # If True, it causes cuDNN to benchmark multiple convolution algorithms and
+    # select the fastest. For PyTorch reproducibility, you need to set to False at cost of slightly lower run-time
+    # performance but easy for experimentation.
+
+    # Avoiding nondeterministic algorithms
+    torch.use_deterministic_algorithms(True)
+
+    # Set seed to for os.environ, which is a mapping object that represents the user’s OS environmental variables.
+    os.environ['PYTHONHASHSEED'] = str(seed) # pythonhashseed is randomly generated when you create a variable in Python
+
+    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 
 
 def main():
@@ -63,8 +83,13 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # For reproducibility
-    seed = 3  # You can set the seed to any fixed value.
-    set_seed(seed)
+    if args.is_repr:
+        seed = 42  # You can set the seed to any fixed value.
+        set_seed(seed)
+    else:
+        cudnn.benchmark = True  # If True, causes cuDNN to benchmark multiple convolution algorithms and select the
+        # fastest. For PyTorch reproducibility, you need to set to False at cost of slightly lower run-time performance
+        # but easy for experimentation.
 
     # attributes variable contains labels for the categories in the dataset and mapping between string names and IDs
     attributes = AttributesDataset(args.attributes_file)
